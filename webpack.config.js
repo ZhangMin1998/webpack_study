@@ -14,7 +14,12 @@ module.exports = {
   },
   // 加载器
   module: {
-    rules: []
+    rules: [
+      {
+        test: /\.css$/, // // 用来匹配 .css 结尾的文件
+        use: ["style-loader", "css-loader"],
+      }
+    ]
   },
   // 插件
   plugins: [],
