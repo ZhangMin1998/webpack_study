@@ -2,6 +2,10 @@
 const path = require("path")
 const ESLintPlugin = require("eslint-webpack-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const TerserPlugin = require("terser-webpack-plugin")
+
+const os = require("os") // nodejs核心模块，直接使用
+const threads = os.cpus().length  // cpu核数
 
 module.exports = {
   // 模式
@@ -92,12 +96,27 @@ module.exports = {
             test: /\.js$/,
             exclude: /node_modules/, // 排除node_modules代码不编译
             // include: path.resolve(__dirname, "../src"), // 也可以用包含
-            loader: "babel-loader",
-            options: {
-              // presets: ["@babel/preset-env"], // 单独建文件写
-              cacheDirectory: true, // 开启babel编译缓存
-              cacheCompression: false, // 缓存文件不要压缩
-            }
+            // loader: "babel-loader",
+            // options: {
+            //   // presets: ["@babel/preset-env"], // 单独建文件写
+            //   cacheDirectory: true, // 开启babel编译缓存
+            //   cacheCompression: false, // 缓存文件不要压缩
+            // }
+            use: [
+              {
+                loader: "thread-loader", // 开启多进程
+                options: {
+                  workers: threads, // 数量
+                },
+              },
+              {
+                loader: "babel-loader",
+                options: {
+                  cacheDirectory: true, // 开启babel编译缓存
+                  cacheCompression: false, // 缓存文件不要压缩
+                },
+              },
+            ]
           },
         ]
       }
@@ -115,6 +134,7 @@ module.exports = {
         __dirname,
         "../node_modules/.cache/.eslintcache"
       ),
+      threads, // 开启多进程和设置进程数量
     }),
     new HtmlWebpackPlugin({
       // 以 public/index.html 为模板创建文件
