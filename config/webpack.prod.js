@@ -25,6 +25,9 @@ const getStyleLoaders = (proProcessor) => {
 }
 
 module.exports = {
+  // 模式
+  mode: 'production',
+  devtool: "source-map", // 包含行/列映射
   // 入口  相对路径和绝对路径都行
   entry: './src/main.js',
   // 输出
@@ -128,6 +131,4 @@ module.exports = {
     // css压缩
     new CssMinimizerPlugin()
   ],
-  // 模式
-  mode: 'production'
 }

@@ -4,6 +4,9 @@ const ESLintPlugin = require("eslint-webpack-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+  // 模式
+  mode: 'development',
+  devtool: "cheap-module-source-map", // 打包编译速度快，只包含行映射
   // 入口  相对路径和绝对路径都行
   entry: './src/main.js',
   // 输出
@@ -103,8 +106,6 @@ module.exports = {
       template: path.resolve(__dirname, "../public/index.html"),
     })
   ],
-  // 模式
-  mode: 'development',
   // 开发服务器 
   // 所有代码都会在内存中编译打包，并不会输出到 dist 目录下
   // 用 npx webpack serve 运行
