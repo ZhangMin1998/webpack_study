@@ -10,7 +10,8 @@ module.exports = {
     // __dirname 当前文件的文件夹绝对路径
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'static/js/main.js' // 入口文件打包输出文件名
+    filename: 'static/js/main.js', // 入口文件打包输出文件名
+    clean: true, // 自动将上次打包目录资源清空
   },
   // 加载器
   module: {
