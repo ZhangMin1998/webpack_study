@@ -11,9 +11,10 @@ module.exports = {
     // path.resolve()方法返回一个绝对路径
     // __dirname 当前文件的文件夹绝对路径
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    // path: path.resolve(__dirname, '../dist'), // 可以不写了
+    path: undefined,
     filename: 'static/js/main.js', // 入口文件打包输出文件名
-    clean: true, // 自动将上次打包目录资源清空
+    // clean: true, // 自动将上次打包目录资源清空  开发模式没有输出
   },
   // 加载器
   module: {
@@ -94,12 +95,12 @@ module.exports = {
   plugins: [
     new ESLintPlugin({
       // 指定检查文件的根目录
-      context: path.resolve(__dirname, "src"),
+      context: path.resolve(__dirname, "../src"),
     }),
     new HtmlWebpackPlugin({
       // 以 public/index.html 为模板创建文件
       // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
-      template: path.resolve(__dirname, "public/index.html"),
+      template: path.resolve(__dirname, "../public/index.html"),
     })
   ],
   // 模式
