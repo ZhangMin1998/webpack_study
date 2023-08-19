@@ -15,6 +15,7 @@ module.exports = {
   // 加载器
   module: {
     rules: [
+      // ---------处理样式-----------
       {
         test: /\.css$/, // // 用来匹配 .css 结尾的文件
         use: ["style-loader", "css-loader"],
@@ -46,7 +47,20 @@ module.exports = {
           'css-loader',
           'stylus-loader'
         ],
-      }
+      },
+      // ---------处理图片-----------
+      {
+        test: /\.(png|jpe?g|gif|webp)$/,
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            // 小于5kb的图片会被base64处理
+            // 优点：减少请求数量
+            // 缺点：体积变得更大
+            maxSize: 5 * 1024
+          }
+        }
+      },
     ]
   },
   // 插件
