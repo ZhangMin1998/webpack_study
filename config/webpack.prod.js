@@ -25,7 +25,17 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader, // 提取css成单独文件
           // "style-loader", 
-          "css-loader"
+          "css-loader", // 将css资源编译成commonjs模块到js中
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  "postcss-preset-env", // 能解决大多数样式兼容性问题
+                ],
+              },
+            },
+          }
         ],
       },
       {
@@ -35,6 +45,16 @@ module.exports = {
           // 'style-loader',
           MiniCssExtractPlugin.loader,
           'css-loader',
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  "postcss-preset-env", // 能解决大多数样式兼容性问题
+                ],
+              },
+            },
+          },
           'less-loader',
         ]
       },
@@ -46,8 +66,18 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           // 将 CSS 转化成 CommonJS 模块
           'css-loader',
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  "postcss-preset-env", // 能解决大多数样式兼容性问题
+                ],
+              },
+            },
+          },
           // 将 Sass 编译成 CSS
-          'sass-loader',
+          'sass-loader'
         ],
       },
       {
@@ -56,7 +86,17 @@ module.exports = {
           // 'style-loader',
           MiniCssExtractPlugin.loader,
           'css-loader',
-          'stylus-loader'
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  "postcss-preset-env", // 能解决大多数样式兼容性问题
+                ],
+              },
+            },
+          },
+          'stylus-loader',
         ],
       },
       // ---------处理图片-----------
