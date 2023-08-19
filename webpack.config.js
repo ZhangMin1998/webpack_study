@@ -10,7 +10,7 @@ module.exports = {
     // __dirname 当前文件的文件夹绝对路径
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js'
+    filename: 'static/js/main.js' // 入口文件打包输出文件名
   },
   // 加载器
   module: {
@@ -59,6 +59,13 @@ module.exports = {
             // 缺点：体积变得更大
             maxSize: 5 * 1024
           }
+        },
+        generator: {
+          // 输出图片名称
+          // hash:8哈希值取8位
+          // [ext]: 使用之前的文件扩展名
+          // [query]: 添加之前的query参数
+          filename: 'static/images/[hash:8][ext][query]'
         }
       },
     ]
