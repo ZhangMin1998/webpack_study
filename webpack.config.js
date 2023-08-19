@@ -18,6 +18,15 @@ module.exports = {
       {
         test: /\.css$/, // // 用来匹配 .css 结尾的文件
         use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.less$/,
+        use: [
+          // compiles Less to CSS
+          'style-loader',
+          'css-loader',
+          'less-loader',
+        ]
       }
     ]
   },
