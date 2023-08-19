@@ -103,5 +103,13 @@ module.exports = {
     })
   ],
   // 模式
-  mode: 'development'
+  mode: 'development',
+  // 开发服务器 
+  // 所有代码都会在内存中编译打包，并不会输出到 dist 目录下
+  // 用 npx webpack serve 运行
+  devServer: {
+    host: "localhost", // 启动服务器域名
+    port: "3000", // 启动服务器端口号
+    open: true, // 是否自动打开浏览器
+  },
 }
