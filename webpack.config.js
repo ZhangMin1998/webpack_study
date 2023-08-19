@@ -78,6 +78,15 @@ module.exports = {
           filename: "static/media/[hash:8][ext][query]",
         },
       },
+      // ---------babel-----------
+      {
+        test: /\.js$/,
+        exclude: /node_modules/, // 排除node_modules代码不编译
+        loader: "babel-loader",
+        // options: { // 单独建文件写
+        //   presets: ["@babel/preset-env"],
+        // }
+      },
     ]
   },
   // 插件
