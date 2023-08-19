@@ -38,6 +38,14 @@ module.exports = {
           // 将 Sass 编译成 CSS
           'sass-loader',
         ],
+      },
+      {
+        test: /\.styl$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'stylus-loader'
+        ],
       }
     ]
   },
