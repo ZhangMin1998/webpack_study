@@ -3,6 +3,7 @@ const path = require("path")
 const ESLintPlugin = require("eslint-webpack-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 
 // 获取处理样式的Loaders
 const getStyleLoaders = (proProcessor) => {
@@ -120,9 +121,12 @@ module.exports = {
       // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
       template: path.resolve(__dirname, "../public/index.html"),
     }),
+    // 提取css成单独文件
     new MiniCssExtractPlugin({
       filename: "static/css/main.css"
-    })
+    }),
+    // css压缩
+    new CssMinimizerPlugin()
   ],
   // 模式
   mode: 'production'
