@@ -29,6 +29,17 @@ promise.then(() => {
   console.log("hello promise core-js")
 })
 
+// PWA  注册 Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js').then(registration => {
+      console.log('SW registered: ', registration)
+    }).catch(registrationError => {
+      console.log('SW registration failed: ', registrationError)
+    })
+  })
+}
+
 // 判断是否支持HMR功能   以下代码生产模式下会删除
 // 实际开发用比如：vue-loader, react-hot-loader
 if (module.hot) {

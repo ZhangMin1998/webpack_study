@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const TerserPlugin = require("terser-webpack-plugin")
 // const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin")
+const WorkboxPlugin = require("workbox-webpack-plugin")
 
 const os = require("os") // nodejs核心模块，直接使用
 const threads = os.cpus().length  // cpu核数
@@ -178,6 +179,12 @@ module.exports = {
     //   as: "script",
     //   // rel: 'prefetch' // prefetch兼容性更差
     // })
+    new WorkboxPlugin.GenerateSW({
+      // 这些选项帮助快速启用 ServiceWorkers
+      // 不允许遗留任何“旧的” ServiceWorkers
+      clientsClaim: true,
+      skipWaiting: true,
+    })
   ],
   optimization: { // webpack5写法
     // 压缩操作
