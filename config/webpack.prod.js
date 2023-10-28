@@ -164,22 +164,26 @@ module.exports = {
       filename: "static/css/main.css"
     }),
     // css压缩
-    new CssMinimizerPlugin(),
+    // new CssMinimizerPlugin(),
      // 开启多进程
-    new TerserPlugin({
-      parallel: threads
-    })
+    // new TerserPlugin({
+    //   parallel: threads
+    // })
   ],
-  // optimization: { // webpack5写法
-  //   // 压缩操作
-  //   minimize: true,
-  //   minimizer: [
-  //     // css压缩也可以写到optimization.minimizer里面，效果一样的
-  //     new CssMinimizerPlugin(),
-  //     // 当生产模式会默认开启TerserPlugin，但是我们需要进行其他配置，就要重新写了
-  //     new TerserPlugin({
-  //       parallel: threads // 开启多进程
-  //     })
-  //   ],
-  // }
+  optimization: { // webpack5写法
+    // 压缩操作
+    minimize: true,
+    minimizer: [
+      // css压缩也可以写到optimization.minimizer里面，效果一样的
+      new CssMinimizerPlugin(),
+      // 当生产模式会默认开启TerserPlugin，但是我们需要进行其他配置，就要重新写了
+      new TerserPlugin({
+        parallel: threads // 开启多进程
+      })
+    ],
+    // 代码分割配置
+    splitChunks: {
+      chunks: "all", // 对所有模块都进行分割
+    }
+  }
 }

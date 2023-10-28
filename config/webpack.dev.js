@@ -143,6 +143,12 @@ module.exports = {
       template: path.resolve(__dirname, "../public/index.html"),
     })
   ],
+  optimization: { // webpack5写法
+    // 代码分割配置
+    splitChunks: {
+      chunks: "all", // 对所有模块都进行分割
+    }
+  },
   // 开发服务器 
   // 所有代码都会在内存中编译打包，并不会输出到 dist 目录下
   // 用 npx webpack serve 运行
