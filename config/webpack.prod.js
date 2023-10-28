@@ -40,6 +40,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: 'static/js/main.js', // 入口文件打包输出文件名
+    chunkFilename: 'static/js/[name].chunk.js', // 动态导入输出资源命名方式
     clean: true, // 自动将上次打包目录资源清空
   },
   // 加载器

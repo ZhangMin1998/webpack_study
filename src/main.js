@@ -13,13 +13,15 @@ console.log(count(5,5))
 console.log(sum(1,2,314))
 
 document.getElementById('btn').onclick = function() {
-  // eslint不能识别动态导入需要，需要追加额外配置
-  import('./js/math').then(({mul}) => {
+  // eslint不能识别动态导入需要，需要修改eslint配置文件
+  // webpackChunkName: "math"：这是webpack动态导入模块命名的方式
+  // "math"将来就会作为[name]的值显示
+  import(/* webpackChunkName: "math" */'./js/math').then(({mul}) => {
     console.log(mul(3, 7))
   })
 }
 
-// 判断是否支持HMR功能
+// 判断是否支持HMR功能   以下代码生产模式下会删除
 // 实际开发用比如：vue-loader, react-hot-loader
 if (module.hot) {
   module.hot.accept('./js/count')
