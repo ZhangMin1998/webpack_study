@@ -20,7 +20,9 @@ module.exports = {
   output: {
     // path: path.resolve(__dirname, '../dist'), // 可以不写了
     path: undefined,
-    filename: 'static/js/main.js', // 入口文件打包输出文件名
+    filename: 'static/js/[name].js', // 入口文件打包输出文件名
+    chunkFilename: 'static/js/[name].chunk.js', // 动态导入输出资源命名方式
+    assetModuleFilename: 'static/media/[name].[hash:8][ext]', // 图片、字体等资源命名方式（注意用hash）
     // clean: true, // 自动将上次打包目录资源清空  开发模式没有输出
   },
   // 加载器
@@ -75,21 +77,21 @@ module.exports = {
                 maxSize: 5 * 1024
               }
             },
-            generator: {
-              // 输出图片名称
-              // hash:8哈希值取8位
-              // [ext]: 使用之前的文件扩展名
-              // [query]: 添加之前的query参数
-              filename: 'static/images/[hash:8][ext][query]'
-            }
+            // generator: {
+            //   // 输出图片名称
+            //   // hash:8哈希值取8位
+            //   // [ext]: 使用之前的文件扩展名
+            //   // [query]: 添加之前的query参数
+            //   filename: 'static/images/[hash:8][ext][query]'
+            // }
           },
           // ---------处理字体图标-----------
           {
             test: /\.(ttf|woff2?|mp3|mp4|avi)$/,
             type: "asset/resource",
-            generator: {
-              filename: "static/media/[hash:8][ext][query]",
-            },
+            // generator: {
+            //   filename: "static/media/[hash:8][ext][query]",
+            // },
           },
           // ---------babel-----------
           {
@@ -145,16 +147,16 @@ module.exports = {
   ],
   optimization: { // webpack5写法
     // 代码分割配置
-    splitChunks: {
-      chunks: "all", // 对所有模块都进行分割
-    }
+    // splitChunks: {
+    //   chunks: "all", // 对所有模块都进行分割
+    // }
   },
   // 开发服务器 
   // 所有代码都会在内存中编译打包，并不会输出到 dist 目录下
   // 用 npx webpack serve 运行
   devServer: {
     host: "localhost", // 启动服务器域名
-    port: "3000", // 启动服务器端口号
+    port: "3001", // 启动服务器端口号
     open: true, // 是否自动打开浏览器
     hot: true, // 开启HMR功能（只能用于开发环境，生产环境不需要了）
   },

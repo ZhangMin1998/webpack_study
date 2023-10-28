@@ -39,8 +39,9 @@ module.exports = {
     // __dirname 当前文件的文件夹绝对路径
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'static/js/main.js', // 入口文件打包输出文件名
+    filename: 'static/js/[name].js', // 入口文件打包输出文件名
     chunkFilename: 'static/js/[name].chunk.js', // 动态导入输出资源命名方式
+    assetModuleFilename: 'static/media/[name].[hash:8][ext]', // 图片、字体等资源命名方式（注意用hash）
     clean: true, // 自动将上次打包目录资源清空
   },
   // 加载器
@@ -93,21 +94,21 @@ module.exports = {
                 maxSize: 5 * 1024
               }
             },
-            generator: {
-              // 输出图片名称
-              // hash:8哈希值取8位
-              // [ext]: 使用之前的文件扩展名
-              // [query]: 添加之前的query参数
-              filename: 'static/images/[hash:8][ext][query]'
-            }
+            // generator: {
+            //   // 输出图片名称
+            //   // hash:8哈希值取8位
+            //   // [ext]: 使用之前的文件扩展名
+            //   // [query]: 添加之前的query参数
+            //   filename: 'static/images/[hash:8][ext][query]'
+            // }
           },
           // ---------处理字体图标-----------
           {
             test: /\.(ttf|woff2?|mp3|mp4|avi)$/,
             type: "asset/resource",
-            generator: {
-              filename: "static/media/[hash:8][ext][query]",
-            },
+            // generator: {
+            //   filename: "static/media/[hash:8][ext][query]",
+            // },
           },
           // ---------babel-----------
           {
@@ -162,7 +163,8 @@ module.exports = {
     }),
     // 提取css成单独文件
     new MiniCssExtractPlugin({
-      filename: "static/css/main.css"
+      filename: "static/css/[name].css",
+      chunkFilename: 'static/css/[name].chunk.css'
     }),
     // css压缩
     // new CssMinimizerPlugin(),
