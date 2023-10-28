@@ -1,5 +1,7 @@
 import count from "./js/count"
 import sum from "./js/sum"
+// import "core-js"
+// import "core-js/es/promise" // 手动按需引入
 
 // 想要webpack打包，必须引入该资源
 import "./css/index.css"
@@ -20,6 +22,12 @@ document.getElementById('btn').onclick = function() {
     console.log(mul(3, 7))
   })
 }
+
+// 添加promise代码
+const promise = Promise.resolve()
+promise.then(() => {
+  console.log("hello promise core-js")
+})
 
 // 判断是否支持HMR功能   以下代码生产模式下会删除
 // 实际开发用比如：vue-loader, react-hot-loader
